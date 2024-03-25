@@ -2,114 +2,124 @@
 
 namespace src\Models;
 
+use src\Services\Hydratation;
+
 class Client{
-    private $_id;
+    private $id;
     private $nom;
     private $prenom;
     private $email;
     private $telephone;
     private $adresse;
 
-    function __construct($nom, $prenom, $email, $telephone, $adresse, $id = null)
+    use Hydratation;
+
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
     {
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->email = $email;
-        $this->telephone = $telephone;
-        $this->adresse = $adresse;
-        if ($id === null) {
-            $this ->_id = $this -> gererUniqueId();
-        } else { 
-            $this ->_id = $id;
-        }
+        return $this->id;
     }
 
-    private function gererUniqueId() {
-        return uniqid();
+    /**
+     * Set the value of id
+     */
+    public function setId($id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
-    function getNom(){
+
+    /**
+     * Get the value of nom
+     */
+    public function getNom()
+    {
         return $this->nom;
     }
 
-    function setNom($nom){
+    /**
+     * Set the value of nom
+     */
+    public function setNom($nom): self
+    {
         $this->nom = $nom;
-    } 
 
-    function getPrenom(){
+        return $this;
+    }
+
+    /**
+     * Get the value of prenom
+     */
+    public function getPrenom()
+    {
         return $this->prenom;
     }
 
-    function setPrenom($prenom){
+    /**
+     * Set the value of prenom
+     */
+    public function setPrenom($prenom): self
+    {
         $this->prenom = $prenom;
-    } 
 
-    function getEmail(){
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    function setEmail($email){
+    /**
+     * Set the value of email
+     */
+    public function setEmail($email): self
+    {
         $this->email = $email;
-    } 
 
-    function getTelephone(){
+        return $this;
+    }
+
+    /**
+     * Get the value of telephone
+     */
+    public function getTelephone()
+    {
         return $this->telephone;
     }
 
-    function setTelephone($telephone){
+    /**
+     * Set the value of telephone
+     */
+    public function setTelephone($telephone): self
+    {
         $this->telephone = $telephone;
-    } 
 
-    function getAdresse(){
+        return $this;
+    }
+
+    /**
+     * Get the value of adresse
+     */
+    public function getAdresse()
+    {
         return $this->adresse;
     }
 
-    function setAdresse($adresse){
+    /**
+     * Set the value of adresse
+     */
+    public function setAdresse($adresse): self
+    {
         $this->adresse = $adresse;
-    } 
 
-    public function getId(){
-        return $this->_id;
-      }
-    
-      public function setId(int|string $id){
-        if (is_string($id) && $id === "à créer") {
-          $this->_id = $this->CreerNouvelId();
-        }else {
-          $this->_id = $id;
-        }}
-
-        private function CreerNouvelId(){
-            $Database = new Database();
-            $utilisateurs = $Database->getAllUtilisateurs();
-        
-            $IDs = [];
-        
-            foreach($utilisateurs as $utilisateur){
-              $IDs[] = $utilisateur->getId();
-            }
-        
-            $i = 1;
-            $unique = false;
-            while ($unique === false) {
-              if (in_array($i, $IDs)) {
-                $i ++;
-              } else {
-                $unique = true;
-              }
-            }
-            return $i;
-          }
-
-    
-    function ValeursClientsDansTableau(){
-        return [
-           "id" => $this->getId(),
-           "nom" => $this->getNom(),
-           "prenom" => $this->getPrenom(),
-           "email" => $this->getEmail(),
-            "telephone" => $this->getTelephone(),
-            "adressePostale" => $this->getAdresse(),
-        ];
+        return $this;
     }
-
 }
