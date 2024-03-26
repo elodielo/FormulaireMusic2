@@ -11,6 +11,7 @@ class Client{
     private $email;
     private $telephone;
     private $adresse;
+    private $rgpdDate;
 
     use Hydratation;
 
@@ -119,6 +120,24 @@ class Client{
     public function setAdresse($adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rgpdDate
+     */
+    public function getRgpdDate()
+    {
+        return $this->rgpdDate;
+    }
+
+    /**
+     * Set the value of rgpdDate
+     */
+    public function setRgpdDate($rgpdDate): self
+    {
+        $this->rgpdDate = $rgpdDate;
 
         return $this;
     }

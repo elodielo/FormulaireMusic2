@@ -1,10 +1,9 @@
 <?php
       // lors de la mise en open source, remplacer les infos concernant la base de données.
-      
       define('DB_HOST', 'localhost');
       define('DB_NAME', 'festival');
       define('DB_USER', 'festival');
-      define('DB_PWD', 'festival');
+      define('DB_PWD', 'festival1');
       define('PREFIXE', 'fest_');
       
       // Si le nom de domaine ne pointe pas vers le dossier public, indiquer le chemin entre le nom de domaine et le dossier public.

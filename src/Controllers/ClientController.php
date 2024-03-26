@@ -9,12 +9,12 @@ use src\Services\Reponse;
 class ClientController
 {
   private $ClientRepo;
-  private $CategoryRepo;
-  private $ClassificationRepo;
+  // private $CategoryRepo;
+  // private $ClassificationRepo;
 
   use Reponse;
 
-}
+
 
 //   public function __construct()
 //   {
@@ -23,12 +23,13 @@ class ClientController
 //     $this->ClassificationRepo = new ClassificationRepository();
 //   }
 
-//   public function index()
-//   {
-//     $categories = $this->CategoryRepo->getAllCategories();
-//     $films = $this->FilmRepo->getAllFilms();
-//     $this->render("Dashboard", ['section' => 'films', 'films' => $films, 'categories' => $categories]);
-//   }
+  public function index()
+  {
+    var_dump("yes");
+    // $categories = $this->CategoryRepo->getAllCategories();
+    // $films = $this->FilmRepo->getAllFilms();
+    // $this->render("Dashboard", ['section' => 'films', 'films' => $films, 'categories' => $categories]);
+  }
 
 //   public function show($id)
 //   {
@@ -108,3 +109,4 @@ class ClientController
 //     $this->render("Dashboard", ['section' => 'films', 'films' => $films]);
 //   }
 // }
+}

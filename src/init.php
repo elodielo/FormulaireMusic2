@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/autoload.php';
 
+
 // On démarre la session :
 session_start();
 
