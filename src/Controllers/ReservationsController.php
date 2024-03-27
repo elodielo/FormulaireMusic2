@@ -37,6 +37,7 @@ public function traiterFormulaire(){
             $nombreOption = 0;
             $prixOption = 0;
             $reduit = "";
+            $prixTotal = 0;
        
             if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $email = htmlspecialchars($_POST['email']);
@@ -46,16 +47,22 @@ public function traiterFormulaire(){
          
             if(isset($_POST['pass1jour'])){
               $typePass = $_POST['pass1jour'];
+              $prixPass = 40;
             } elseif (isset($_POST['pass2jours'])) {
               $typePass = $_POST['pass2jours'];
+              $prixPass = 70;
             }elseif (isset($_POST['pass3jours'])) {
-              $typePass = $_POST['pass2jours'];            }
+              $typePass = $_POST['pass2jours'];
+              $prixPass = 100;            }
             if(isset($_POST['pass1jourreduit'])){
               $typePass = $_POST['pass1jourreduit'];
+              $prixPass = 25;
             } elseif (isset($_POST['pass2joursreduit'])) {
               $typePass = $_POST['pass2joursreduit'];
+              $prixPass = 50;
             }elseif (isset($_POST['pass3joursreduit'])) {
               $typePass = $_POST['pass3joursreduit'];
+              $prixPass = 65;
             }
         
             if(isset($_POST['choixJour1'])){
@@ -120,12 +127,12 @@ public function traiterFormulaire(){
             }elseif (isset($_POST['enfantsNon'])) {
               $nbrEnfants = "non";
             }
+  $prixTotal = (($nbrReservation*$prixPass)+$prixOption+($nbrCasques*2));
         
-          // Calcul prixTotal;
   $newClient = new Client(null,$nom,$prenom,$email,$telephone,$adresse,"2024-02-02");
   $newClientRepo = new ClientRepository();
   $newClientRepo->creerClient($newClient);
-  $newResa = new Reservation(null, $nbrReservation, $reduit, 10, $nbrEnfants,$nbrLuges, $nbrCasques, null);
+  $newResa = new Reservation(null, $nbrReservation, $reduit, $prixTotal, $nbrEnfants,$nbrLuges, $nbrCasques, null);
   $newResaRepo = new ReservationRepository();
   $newResaRepo->creerReservation($newResa);
 
