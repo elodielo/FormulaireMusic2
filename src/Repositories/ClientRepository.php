@@ -23,7 +23,7 @@ class ClientRepository
   {
     $sql = "SELECT * FROM fest_Client";
 
-    return  $this->DB->query($sql)->fetchAll(PDO::FETCH_CLASS, Client::class);
+    return  $this->DB->query($sql)->fetchAll(PDO::FETCH_OBJ);
   }
 
   public function CreerClient(Client $client): Client
@@ -48,6 +48,13 @@ class ClientRepository
     return $client;
   }
 
-
+  public function getUtilisateurById($id)
+  {
+      $sql = "SELECT * FROM fest_client WHERE ID=:id";
+      $statement = $this->DB->prepare($sql);
+      $statement->execute([':id' => $id]);
+      $retour = $statement->fetch(PDO::FETCH_OBJ);
+      return $retour;
+  }
 
 }
