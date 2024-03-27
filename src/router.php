@@ -3,6 +3,8 @@
 use src\Controllers\ClientController;
 // use src\Controllers\ReservationsController;
 use src\Services\Routing;
+use src\Models\Client;
+use src\Repositories\ClientRepository;
 
 $ClientController = new ClientController;
 // $ReservationsController = new ReservationsController;
@@ -17,7 +19,14 @@ switch ($route) {
       if (isset($_SESSION['connecté'])) {
        var_dump('c');
       } else {
-        
+
+var_dump('coucou');
+
+$client = new Client(null, "La", "Elodie", "la@la", "0767676767","lololo", "2024-02-02");
+$clientRepo = new ClientRepository;
+
+$client1 = $clientRepo->CreerClient($client);
+var_dump($client1);
         $ClientController->index();
       }
       break;

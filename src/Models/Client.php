@@ -2,7 +2,7 @@
 
 namespace src\Models;
 
-use src\Services\Hydratation;
+// use src\Services\Hydratation;
 
 class Client{
     private $id;
@@ -13,7 +13,16 @@ class Client{
     private $adresse;
     private $rgpdDate;
 
-    use Hydratation;
+    public function __construct($id, $nom, $prenom, $email, $telephone, $adresse, $rgpdDate)
+    {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->email = $email;
+        $this->telephone = $telephone;
+        $this->adresse = $adresse;
+        $this->rgpdDate = $rgpdDate;
+    }
 
 
     /**
