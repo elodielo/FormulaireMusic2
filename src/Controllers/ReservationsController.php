@@ -3,18 +3,22 @@
 namespace src\Controllers;
 
 use src\Models\Client;
+use src\Models\Database;
 use src\Models\Reservation;
 use src\Repositories\ClientRepository;
 use src\Repositories\ReservationRepository;
 use src\Services\Reponse;
 
+
 class ReservationsController {
-
-    use Reponse;
-
-public function traiterFormulaire(){
+  
+  use Reponse;
+  
+  public function traiterFormulaire(){
+    
+    $DB = new Database;
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
+     
         if (isset($_POST['nombrePlaces'])
         &&  isset($_POST['nom']) 
         && isset($_POST['prenom']) 
@@ -42,7 +46,8 @@ public function traiterFormulaire(){
             if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $email = htmlspecialchars($_POST['email']);
               }else {
-                header('location:../index.php?erreur=');
+                var_dump('erreur email');
+                die();
               }
          
             if(isset($_POST['pass1jour'])){
@@ -83,6 +88,7 @@ public function traiterFormulaire(){
               $prixOption += $nombreOption*5;
 
             }
+            
             if (isset($_POST['tenteNuit2'])) {
               $nomOption = "tente";
               $nombreOption += 1;
@@ -127,20 +133,20 @@ public function traiterFormulaire(){
             }elseif (isset($_POST['enfantsNon'])) {
               $nbrEnfants = "non";
             }
+            
   $prixTotal = (($nbrReservation*$prixPass)+$prixOption+($nbrCasques*2));
         
   $newClient = new Client(null,$nom,$prenom,$email,$telephone,$adresse,"2024-02-02");
   $newClientRepo = new ClientRepository();
-  $newClientRepo->creerClient($newClient);
-  $newResa = new Reservation(null, $nbrReservation, $reduit, $prixTotal, $nbrEnfants,$nbrLuges, $nbrCasques, null);
+  $newClient = $newClientRepo->creerClient($newClient);
+
+  $newResa = new Reservation(null, $nbrReservation, $reduit, $prixTotal, $nbrEnfants,$nbrLuges, $nbrCasques, $newClient->getId());
   $newResaRepo = new ReservationRepository();
   $newResaRepo->creerReservation($newResa);
-
+  
           }
 
-
-
-        
+          
     }
 }
 

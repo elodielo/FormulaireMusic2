@@ -70,12 +70,12 @@ public function supprimerReservation($id)
 
     public function creerReservation(Reservation $reservation)
     {
-        $query = $this->db->prepare("INSERT INTO fest_reservations (nombre, reduit, prix_total, enfants, luges, casques, id_client) 
-                                     VALUES (:nombre, :reduit, :prix_total, :enfants, :luges, :casques, :id_client)");
+        $query = $this->db->prepare("INSERT INTO fest_reservations (nombre, reduit, prixTotal, enfants, luges, casques, id_client) 
+                                     VALUES (:nombre, :reduit, :prixTotal, :enfants, :luges, :casques, :id_client)");
         $query->execute([
             'nombre' => $reservation->getNombre(),
             'reduit' => $reservation->getReduit(),
-            'prix_total' => $reservation->getPrixTotal(),
+            'prixTotal' => $reservation->getPrixTotal(),
             'enfants' => $reservation->getEnfants(),
             'luges' => $reservation->getLuges(),
             'casques' => $reservation->getCasques(),
