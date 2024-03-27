@@ -3,92 +3,170 @@
 namespace src\Models;
 
 class Reservation{
-    private $nbrReservation;
-    private $tarif;
-    private $joursChoisis;
-    private $nbrTentes;
-    private $nbrCamions;
-    private $nbrEnfants;
-    private $nbrCasques;
-    private $nbrLuges;
+    private $id;
+    private $nombre;
+    private $reduit;
+    private $prixTotal;
+    private $enfants;
+    private $luges;
+    private $casques;
+    private $id_client;
     
-    function __construct($nbrReservation, $tarif ,$joursChoisis, $nbrTentes, $nbrCamions, $nbrEnfants, $nbrCasques, $nbrLuges){
-        $this->nbrReservation = $nbrReservation;
-        $this->tarif = $tarif;
-        $this->joursChoisis = $joursChoisis;
-        $this->nbrTentes = $nbrTentes;
-        $this->nbrCamions = $nbrCamions;
-        $this->nbrEnfants = $nbrEnfants;
-        $this->nbrCasques = $nbrCasques;
-        $this->nbrLuges = $nbrCasques;
+    function __construct($id, $nombre, $reduit, $prixTotal, $enfants, $luges, $casques, $id_client){
+        $this->id = $id;
+        $this->nombre = $nombre;
+        $this->reduit = $reduit;
+        $this->prixTotal = $prixTotal;
+        $this->enfants = $enfants;
+        $this->luges = $luges;
+        $this->casques = $casques;
+        $this->id_client = $id_client;
     }
     
-    function getNbrReservation(){
-        return $this->nbrReservation;
-    }    
-    function setNbrReservation($nbrReservation){
-        $this->nbrReservation = $nbrReservation;
-    }
-    function getTarif(){
-        return $this->tarif;
-    }    
-    function setTarif($tarif){
-        $this->tarif = $tarif;
-    }
-  
-    function getjoursChoisis(){
-        return $this->joursChoisis;
-    }    
-    function setjoursChoisis($joursChoisis){
-        $this->joursChoisis = $joursChoisis;
-    }
-    function getnbrTentes(){
-        return $this->nbrTentes;
-    }    
-    function setnbrTentes($nbrTentes){
-        $this->nbrTentes = $nbrTentes;
-    }
-    function getnbrCamions(){
-        return $this->nbrCamions;
-    }    
-    function setnbrCamions($nbrCamions){
-        $this->nbrCamions = $nbrCamions;
-    }
-    function getnbrEnfants(){
-        return $this->nbrEnfants;
-    }    
-    function setnbrEnfants($nbrEnfants){
-        $this->nbrEnfants = $nbrEnfants;
-    }
-    function getnbrCasques(){
-        return $this->nbrCasques;
-    }    
-    function setnbrCasques($nbrCasques){
-        $this->nbrCasques = $nbrCasques;
-    }
-    function getnbrLuges(){
-        return $this->nbrLuges;
-    }    
-    function setnbrLuges($nbrLuges){
-        $this->nbrLuges = $nbrLuges;
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
-    function calculPrixFestival(){
-        $PrixTotal = ($this->nbrReservation*$this->tarif + $this->nbrTentes+ $this->nbrCamions+ $this->nbrCasques);
-        return $PrixTotal;
+    /**
+     * Set the value of id
+     */
+    public function setId($id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
-    
-    function ValeursReservationsDansTableau(){
-        return [
-           "nbrResa" => $this->getNbrReservation(),
-           "tarif" => $this->getTarif(),
-           "joursChoisis" => $this->getjoursChoisis(),
-           "nbrTentes" => $this->getnbrTentes(),
-            "nbrCamions" => $this->getnbrCamions(),
-            "nbrEnfants" => $this->getnbrEnfants(),
-            "nbrCasques" => $this->getnbrCasques(),
-            "nbrLuges" => $this->getnbrLuges(),
-        ];
+
+    /**
+     * Get the value of nombre
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
     }
-    
+
+    /**
+     * Set the value of nombre
+     */
+    public function setNombre($nombre): self
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of reduit
+     */
+    public function getReduit()
+    {
+        return $this->reduit;
+    }
+
+    /**
+     * Set the value of reduit
+     */
+    public function setReduit($reduit): self
+    {
+        $this->reduit = $reduit;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of prixTotal
+     */
+    public function getPrixTotal()
+    {
+        return $this->prixTotal;
+    }
+
+    /**
+     * Set the value of prixTotal
+     */
+    public function setPrixTotal($prixTotal): self
+    {
+        $this->prixTotal = $prixTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of enfants
+     */
+    public function getEnfants()
+    {
+        return $this->enfants;
+    }
+
+    /**
+     * Set the value of enfants
+     */
+    public function setEnfants($enfants): self
+    {
+        $this->enfants = $enfants;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of luges
+     */
+    public function getLuges()
+    {
+        return $this->luges;
+    }
+
+    /**
+     * Set the value of luges
+     */
+    public function setLuges($luges): self
+    {
+        $this->luges = $luges;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of casques
+     */
+    public function getCasques()
+    {
+        return $this->casques;
+    }
+
+    /**
+     * Set the value of casques
+     */
+    public function setCasques($casques): self
+    {
+        $this->casques = $casques;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_client
+     */
+    public function getIdClient()
+    {
+        return $this->id_client;
+    }
+
+    /**
+     * Set the value of id_client
+     */
+    public function setIdClient($id_client): self
+    {
+        $this->id_client = $id_client;
+
+        return $this;
+    }
+
+
 }
