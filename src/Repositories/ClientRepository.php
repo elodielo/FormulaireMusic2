@@ -65,9 +65,10 @@ class ClientRepository
       $statement->execute([':email' => $email]);
 
       $client = $statement->fetch(PDO::FETCH_ASSOC);
+      $newClient = new Client($client['id'], $client['nom'], $client['prenom'], $client['email'], $client['telephone'], $client['adresse'], $client['rgpdDate'], $client['mdp']);
       if($client){
       if(password_verify($mdp, $client['mdp'])){
-          return $client;
+          return $newClient;
       } else {
           echo "mot de passe erronne";
       }} else {

@@ -14,13 +14,13 @@ $ReservationsController = new ReservationsController;
 $route = $_SERVER['REDIRECT_URL'];
 $methode = $_SERVER['REQUEST_METHOD'];
 $routeComposee = Routing::routeComposee($route);
-var_dump(HOME_URL);
+//var_dump($_SESSION);
 
 switch ($route) {
   case HOME_URL:
-    if (isset($_SESSION['connecté'])) {
+    if ($_SESSION['connecte']) {
       header('location:'.HOME_URL.'recapResa');
-      die;
+      die();
     } else {
       header('location: '.HOME_URL.'formulaire');
     }
@@ -35,6 +35,7 @@ switch ($route) {
     break;
   
   case HOME_URL.'traiterForm':
+    $ReservationsController->traiterFormulaire();
     $HomeController->indexRecap();
      break;
 
@@ -49,11 +50,12 @@ switch ($route) {
 
   case HOME_URL.'recapResa':
     $HomeController->indexRecap();
+    break;
 
-    case HOME_URL. 'connexion':
-        $HomeController->affichePageConnexion();
-        break;
-      }
+  case HOME_URL. 'connexion':
+      $HomeController->affichePageConnexion();
+      break;
+    }
 
 //     case HOME_URL.'connexion':
 //       if (isset($_SESSION['connecté'])) {

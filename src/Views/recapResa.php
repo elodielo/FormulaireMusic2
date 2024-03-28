@@ -8,19 +8,20 @@ use src\Repositories\ReservationRepository;
 
 $clientRepo = new ClientRepository;
 $resaRepo = new ReservationRepository;
-$idClient = $_SESSION['utilisateur']['id'];
+// var_dump($_SESSION);
+$idClient = $_SESSION['utilisateur']->getId();
 $client = $clientRepo->getClientById($idClient);
 $resa = $resaRepo->getClientByIdClient($idClient);
 $jour =$resaRepo->recupJourResaavecIDclient($idClient);
 $optionRepo = new OptionRepository;
 $option = $optionRepo->recupOptionavecIDclient($idClient);
-var_dump($option);
+// var_dump($option);
 
 ?>
 
  <div id="recapResaDiv">
      <h2> Votre Réservation </h2>
-     <p> Bonjour <?php echo $client->nom ?></p>
+     <p> Bonjour <?php echo $client->prenom ." ". $client->nom ?></p>
      <p>La reservation a bien été effectuée</p>
      <p>Voici le récapitulatif : </p>
      <ul>

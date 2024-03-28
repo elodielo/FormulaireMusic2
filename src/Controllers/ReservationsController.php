@@ -149,6 +149,9 @@ class ReservationsController {
   $newClient = new Client(null,$nom,$prenom,$email,$telephone,$adresse, $rgpdstring, $hashMdp);
   $newClientRepo = new ClientRepository();
   $newClient = $newClientRepo->creerClient($newClient);
+  // session_start();
+  $_SESSION['connecte'] = true;
+  $_SESSION['utilisateur'] = $newClient;
 
   $newResa = new Reservation(null, $nbrReservation, $reduit, $prixTotal, $nbrEnfants,$nbrLuges, $nbrCasques, $newClient->getId());
   $newResaRepo = new ReservationRepository();
