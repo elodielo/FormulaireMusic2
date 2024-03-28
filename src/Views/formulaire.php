@@ -1,7 +1,7 @@
 <?php 
 include __DIR__ .'/includes/header.php' ?>
 
-<form action="<?php echo HOME_URL.'formulaire/traiterForm'; ?>" id="inscription" method="POST">
+<form action="<?php echo HOME_URL.'traiterForm'; ?>" id="inscription" method="POST">
     <fieldset id="reservation">
       <legend>Réservation</legend>
       <h3>Nombre de réservation(s) :</h3>
@@ -106,9 +106,12 @@ include __DIR__ .'/includes/header.php' ?>
         <input type="text" name="telephone" id="telephone" required>
         <label for="adressePostale">Adresse Postale :</label>
         <input type="text" name="adressePostale" id="adressePostale" required>
-
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" name="mdp" id="mdp" required>
+        <label for="mdp2">Confirmation mot de passe :</label>
+        <input type="password" name="mdp2" id="mdp2" required>
         <input type="submit" name="soumission" class="bouton" value="Réserver" onclick="verifierFormulaire()">
-    </fieldset>
+      </fieldset>
   </form>
 
 </body>

@@ -32,9 +32,8 @@ class PassRepository
     $statement = $this->DB->prepare($sql);
 
     $statement->execute([
-      ':typePass'               => $pass->getTypePass(),
-      ':prenom'       => $pass->getPrixPass(),
-
+      ':typePass'     => $pass->getTypePass(),
+      ':prixPass'       => $pass->getPrixPass(),
     ]);
 
     $id = $this->DB->lastInsertId();

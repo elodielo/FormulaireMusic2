@@ -12,8 +12,9 @@ class Client{
     private $telephone;
     private $adresse;
     private $rgpdDate;
+    private $mdp;
 
-    public function __construct($id, $nom, $prenom, $email, $telephone, $adresse, $rgpdDate)
+    public function __construct($id, $nom, $prenom, $email, $telephone, $adresse, $rgpdDate, $mdp)
     {
         $this->id = $id;
         $this->nom = $nom;
@@ -22,6 +23,7 @@ class Client{
         $this->telephone = $telephone;
         $this->adresse = $adresse;
         $this->rgpdDate = $rgpdDate;
+        $this->mdp = $mdp;
     }
 
 
@@ -147,6 +149,24 @@ class Client{
     public function setRgpdDate($rgpdDate): self
     {
         $this->rgpdDate = $rgpdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of mdp
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
+
+    /**
+     * Set the value of mdp
+     */
+    public function setMdp($mdp): self
+    {
+        $this->mdp = $mdp;
 
         return $this;
     }

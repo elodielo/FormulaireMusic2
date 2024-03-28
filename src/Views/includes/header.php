@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/styleHeader.css">
   <script defer src="assets/js/script.js" type="module"></script>
-  <!-- <script defer src="scriptVerificationChamps.js" type="module"></script> -->
   <title>Formulaire de réservation Music Vercos Festival</title>
 </head>
 <header>
@@ -15,11 +14,10 @@
       <h1> Music Vercors Festival </h1>
     </div>
     <div>
-      <?php if (isset($_SESSION['connecté'])) { ?>
-        <a href="./includes/deconnexion.php">Déconnexion</a>
+      <?php if (isset($_SESSION['connecte'])) { ?>
+        <a href=<?php echo HOME_URL.'deconnexion'; ?>>Déconnexion</a>
       <?php } else { ?>
-        <a href="./includes/recapResa.php">Réservation</a>
-        <a href="connexion.php">Connexion</a>
+        <a href="<?php echo HOME_URL.'connexion'; ?>">Connexion</a>
       <?php } ?>
     </div>
   </header>

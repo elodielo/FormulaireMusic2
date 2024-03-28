@@ -41,6 +41,17 @@ class ReservationRepository
         return $reservations;
     }
 
+    public function recupJourResaavecIDclient($idClient)
+    {
+        $sql = "SELECT jour FROM fest_reservations_pass 
+        JOIN fest_reservations ON fest_reservations_pass.id_resa = fest_reservations.id
+        WHERE fest_reservations.id_client = :id;";
+        $statement = $this->db->prepare($sql);
+        $statement->execute([':id' => $idClient]);
+        $retour = $statement->fetch(PDO::FETCH_OBJ);
+        return $retour;
+    }
+
     public function getReservationById($id)
     {
         $query = $this->db->prepare("SELECT * FROM fest_reservations WHERE id = :id");
@@ -68,19 +79,33 @@ public function supprimerReservation($id)
         $query->execute(['id' => $id]);
     }
 
+    public function getClientByIdClient($idClient)
+    {
+        $sql = "SELECT * FROM fest_reservations WHERE id_client=:id";
+        $statement = $this->db->prepare($sql);
+        $statement->execute([':id' => $idClient]);
+        $retour = $statement->fetch(PDO::FETCH_OBJ);
+        return $retour;
+    }
+
+
     public function creerReservation(Reservation $reservation)
     {
         $query = $this->db->prepare("INSERT INTO fest_reservations (nombre, reduit, prixTotal, enfants, luges, casques, id_client) 
                                      VALUES (:nombre, :reduit, :prixTotal, :enfants, :luges, :casques, :id_client)");
         $query->execute([
-            'nombre' => $reservation->getNombre(),
-            'reduit' => $reservation->getReduit(),
-            'prixTotal' => $reservation->getPrixTotal(),
-            'enfants' => $reservation->getEnfants(),
-            'luges' => $reservation->getLuges(),
-            'casques' => $reservation->getCasques(),
-            'id_client' => $reservation->getIdClient()
+            ':nombre' => $reservation->getNombre(),
+            ':reduit' => $reservation->getReduit(),
+            ':prixTotal' => $reservation->getPrixTotal(),
+            ':enfants' => $reservation->getEnfants(),
+            ':luges' => $reservation->getLuges(),
+            ':casques' => $reservation->getCasques(),
+            ':id_client' => $reservation->getIdClient()
         ]);
+      $id = $this->db->lastInsertId();
+      $reservation->setId($id);
+  
+      return $reservation;
     }
 
     public function updateReservation(Reservation $reservation)
@@ -100,4 +125,6 @@ public function supprimerReservation($id)
             'id_client' => $reservation->getIdClient()
         ]);
     }
+
+
 }

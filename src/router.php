@@ -19,7 +19,7 @@ var_dump(HOME_URL);
 switch ($route) {
   case HOME_URL:
     if (isset($_SESSION['connecté'])) {
-      header('location: '.HOME_URL.'recapResa');
+      header('location:'.HOME_URL.'recapResa');
       die;
     } else {
       header('location: '.HOME_URL.'formulaire');
@@ -30,12 +30,30 @@ switch ($route) {
     $HomeController->afficheForm();
     break;
 
-    case $routeComposee[0] == "formulaire":
-      switch ($route) {
-        case $routeComposee[1] == "traiterForm":
-          $ReservationsController->traiterFormulaire();
-          break;
-        }}
+  case HOME_URL.'traitementConnexion':
+    $HomeController->traiterConnexion();
+    break;
+  
+  case HOME_URL.'traiterForm':
+    $HomeController->indexRecap();
+     break;
+
+
+   case HOME_URL.'formulaire':
+   $HomeController->indexRecap();
+  break;
+
+  case HOME_URL.'deconnexion':
+    $HomeController->quit();
+   break;
+
+  case HOME_URL.'recapResa':
+    $HomeController->indexRecap();
+
+    case HOME_URL. 'connexion':
+        $HomeController->affichePageConnexion();
+        break;
+      }
 
 //     case HOME_URL.'connexion':
 //       if (isset($_SESSION['connecté'])) {

@@ -28,7 +28,7 @@ class ClientRepository
 
   public function CreerClient(Client $client): Client
   {
-    $sql = "INSERT INTO fest_client (NOM, PRENOM, EMAIL, TELEPHONE, ADRESSE, rgpdDate) VALUES (:nom, :prenom, :email, :telephone, :adresse, :rgpdDate);";
+    $sql = "INSERT INTO fest_client (NOM, PRENOM, EMAIL, TELEPHONE, ADRESSE, rgpdDate, mdp) VALUES (:nom, :prenom, :email, :telephone, :adresse, :rgpdDate, :mdp);";
 
     $statement = $this->DB->prepare($sql);
 
@@ -38,7 +38,8 @@ class ClientRepository
       ':email'      => $client->getEmail(),
       ':telephone'            => $client->getTelephone(),
       ':adresse'             => $client->getAdresse(),
-      ':rgpdDate'           => $client->getRgpdDate()
+      ':rgpdDate'           => $client->getRgpdDate(),
+      ':mdp'      =>$client->getMdp(),
 
     ]);
 
@@ -48,13 +49,31 @@ class ClientRepository
     return $client;
   }
 
-  public function getUtilisateurById($id)
+  public function getClientById($id)
   {
       $sql = "SELECT * FROM fest_client WHERE ID=:id";
       $statement = $this->DB->prepare($sql);
       $statement->execute([':id' => $id]);
       $retour = $statement->fetch(PDO::FETCH_OBJ);
       return $retour;
+  }
+
+  public function getClientByMailEtMdp($email, $mdp)
+  {   
+      $sql = "SELECT * FROM fest_client WHERE email=:email";
+      $statement = $this->DB->prepare($sql);
+      $statement->execute([':email' => $email]);
+
+      $client = $statement->fetch(PDO::FETCH_ASSOC);
+      if($client){
+      if(password_verify($mdp, $client['mdp'])){
+          return $client;
+      } else {
+          echo "mot de passe erronne";
+      }} else {
+          echo "utilisateur inconnu";
+      }
+      
   }
 
 }

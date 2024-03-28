@@ -2,11 +2,18 @@
 
 namespace src\Controllers;
 
+use DateTime;
 use src\Models\Client;
 use src\Models\Database;
+use src\Models\Option;
+use src\Models\Pass;
+use src\Models\ResaPass;
 use src\Models\Reservation;
 use src\Repositories\ClientRepository;
+use src\Repositories\PassRepository;
+use src\Repositories\ResaPassRepository;
 use src\Repositories\ReservationRepository;
+use src\Repositories\OptionRepository;
 use src\Services\Reponse;
 
 
@@ -30,18 +37,19 @@ class ReservationsController {
             $nbrReservation = (int)$_POST['nombrePlaces'];
             $telephone = $_POST['telephone'];
             $adresse = $_POST['adressePostale'];
-            $tarif= 0;
-            $nbrTentes=0;
-            $nbrCamions= 0;
             $nbrCasques = (int)$_POST['nombreCasquesEnfants'];
             $nbrLuges = $_POST['NombreLugesEte'];
             $joursChoisis ="";
             $nbrEnfants= "non";
-            $rgpd = "";
             $nombreOption = 0;
             $prixOption = 0;
             $reduit = "";
             $prixTotal = 0;
+            $mdp = $_POST['mdp'];
+            $mdp2 = $_POST['mdp2'];
+
+            if ($mdp === $mdp2) {
+              $hashMdp = password_hash($mdp, PASSWORD_DEFAULT);}
        
             if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $email = htmlspecialchars($_POST['email']);
@@ -51,22 +59,22 @@ class ReservationsController {
               }
          
             if(isset($_POST['pass1jour'])){
-              $typePass = $_POST['pass1jour'];
+              $typePass = 'pass1jour';
               $prixPass = 40;
             } elseif (isset($_POST['pass2jours'])) {
-              $typePass = $_POST['pass2jours'];
+              $typePass = 'pass2jours';
               $prixPass = 70;
             }elseif (isset($_POST['pass3jours'])) {
-              $typePass = $_POST['pass2jours'];
+              $typePass = 'pass3jours';
               $prixPass = 100;            }
             if(isset($_POST['pass1jourreduit'])){
-              $typePass = $_POST['pass1jourreduit'];
+              $typePass = 'pass1jourreduit';
               $prixPass = 25;
             } elseif (isset($_POST['pass2joursreduit'])) {
-              $typePass = $_POST['pass2joursreduit'];
+              $typePass = 'pass2joursreduit';
               $prixPass = 50;
             }elseif (isset($_POST['pass3joursreduit'])) {
-              $typePass = $_POST['pass3joursreduit'];
+              $typePass = 'pass3joursreduit';
               $prixPass = 65;
             }
         
@@ -133,16 +141,30 @@ class ReservationsController {
             }elseif (isset($_POST['enfantsNon'])) {
               $nbrEnfants = "non";
             }
+  $rgpdDate = new DateTime();
+  $rgpdstring = $rgpdDate->format('Y-m-d'); 
             
   $prixTotal = (($nbrReservation*$prixPass)+$prixOption+($nbrCasques*2));
         
-  $newClient = new Client(null,$nom,$prenom,$email,$telephone,$adresse,"2024-02-02");
+  $newClient = new Client(null,$nom,$prenom,$email,$telephone,$adresse, $rgpdstring, $hashMdp);
   $newClientRepo = new ClientRepository();
   $newClient = $newClientRepo->creerClient($newClient);
 
   $newResa = new Reservation(null, $nbrReservation, $reduit, $prixTotal, $nbrEnfants,$nbrLuges, $nbrCasques, $newClient->getId());
   $newResaRepo = new ReservationRepository();
-  $newResaRepo->creerReservation($newResa);
+ $newResa = $newResaRepo->creerReservation($newResa);
+
+  $newPass = new Pass(null, $typePass, $prixPass);
+  $newPassRepo = new PassRepository();
+  $newPass = $newPassRepo->CreerPass($newPass);
+
+  $newPassResa = new ResaPass($newResa->getId(), $newPass->getId(), $joursChoisis);
+  $newPassResaRepo = new ResaPassRepository();
+  $newPassResaRepo->creerResaPass($newPassResa);
+
+  $newOption = new Option(null, $nomOption, $prixOption,$nombreOption);
+  $newOptionRepo = new OptionRepository();
+  $newOptionRepo->CreerOption($newOption);
   
           }
 

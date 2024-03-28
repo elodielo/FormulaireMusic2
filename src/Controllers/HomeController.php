@@ -2,6 +2,7 @@
 
 namespace src\Controllers;
 
+use src\Repositories\ClientRepository;
 use src\Services\Reponse;
 
 class HomeController
@@ -17,7 +18,7 @@ class HomeController
       $erreur = '';
     }
 
-    $this->render("Accueil", ["erreur"=> $erreur]);
+    $this->render("Accueil", ["erreur" => $erreur]);
   }
 
   public function afficheForm()
@@ -26,27 +27,48 @@ class HomeController
     exit();
   }
 
-
-  public function auth(string $password): void
+  public function affichePageConnexion()
   {
-    if ($password === 'admin') {
-      $_SESSION['connecté'] = TRUE;
-      header('location: '.HOME_URL.'dashboard');
-      die();
-    } else {
-      header('location: '.HOME_URL.'?erreur=connexion');
+    $this->render("connexion");
+  }
+
+  public function traiterConnexion()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      if (isset($_POST['emailClient']) && isset($_POST['mdpClient'])) {
+        $emailClient = $_POST['emailClient'];
+        $mdpClient = $_POST['mdpClient'];
+        $repoClient = new ClientRepository();
+        $client = $repoClient->getClientByMailEtMdp($emailClient, $mdpClient);
+        if ($client !== null) {
+          session_start();
+          $_SESSION['utilisateur'] = $client;
+          $_SESSION['connecte'] = true;
+          var_dump("Ok client connecté");
+          header('location:'.HOME_URL.'recapResa');
+          die();
+        }else{
+          // RENVOI SUR PAGE INSCRIPTION OUU PAGE : PAS ENCORE DE RESA
+        }
+      }
     }
   }
+
 
   public function quit()
   {
     session_destroy();
-    header('location: '.HOME_URL);
+    header('location:'. HOME_URL);
     die();
   }
 
+  public function indexRecap()
+  {
+    $this->render("recapResa");
+  }
+
   public function page404(): void
-  {    
+  {
     header("HTTP/1.1 404 Not Found");
     $this->render('404');
   }
