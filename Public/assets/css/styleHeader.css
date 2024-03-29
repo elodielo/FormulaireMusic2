@@ -49,3 +49,11 @@
     display: block;
 }
 
+@media only screen and (max-width: 425px) {
+    #logo {
+        display: none;
+    }
+    #recapResaDiv{
+        width: 90%;
+    }
+}

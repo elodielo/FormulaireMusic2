@@ -4,7 +4,7 @@
 include __DIR__ .'/includes/header.php';
 
 ?>
-  <form action="<?php echo HOME_URL.'traitementConnexion'; ?>" method="post">
+  <form id="formulaireCo" action="<?php echo HOME_URL.'traitementConnexion'; ?>" method="post">
     <h1>Connexion</h1>
     <label for="emailClient">Mail :</label>
     <input type="email" name="emailClient" id="emailClient" required>
