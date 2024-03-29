@@ -297,3 +297,14 @@ choixJour23.addEventListener("click", (event) => {
     choixJour12.checked = false;
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  let form = document.getElementById('inscription');
+  let rgpdCheckbox = document.getElementById('rgpd');
+  form.addEventListener('submit', function(event) {
+      if (!rgpdCheckbox.checked) {
+          event.preventDefault();
+          document.getElementById('rgpd-error').style.display = 'block';
+      }
+  });
+});

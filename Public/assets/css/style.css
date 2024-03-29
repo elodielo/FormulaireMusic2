@@ -8,6 +8,10 @@
     cursor: pointer;
 }
 
+#confirmation{
+    border: solid  3px darkorange;
+}
+
 .bouton {
     display: flex;
     justify-content: center;

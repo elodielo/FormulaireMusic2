@@ -29,7 +29,6 @@ class ReservationsController
 
     $DB = new Database;
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-      
       if (
         isset($_POST['nombrePlaces'])
         &&  isset($_POST['nom'])

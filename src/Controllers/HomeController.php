@@ -10,16 +10,16 @@ class HomeController
 
   use Reponse;
 
-  public function index(): void
-  {
-    if (isset($_GET['erreur'])) {
-      $erreur = htmlspecialchars($_GET['erreur']);
-    } else {
-      $erreur = '';
-    }
+  // public function index(): void
+  // {
+  //   if (isset($_GET['erreur'])) {
+  //     $erreur = htmlspecialchars($_GET['erreur']);
+  //   } else {
+  //     $erreur = '';
+  //   }
 
-    $this->render("Accueil", ["erreur" => $erreur]);
-  }
+  //   $this->render("Accueil", ["erreur" => $erreur]);
+  // }
 
   public function afficheForm()
   {
@@ -67,7 +67,7 @@ $headers = 'From: elodielo20@gmail.com' . "\r\n" .
 $test = mail($to, $subject, $message, $headers);
 
 if ($test) {
-  echo "le mail a bien été envoyé.";
+  $this->render("confirmationEmail");
 } else{
   var_dump($test); // reverra la valeur de la fonction mail, probablement false. Aller voir dans ce cas le fichier error.log dans C://wamp/sendmail/
 }

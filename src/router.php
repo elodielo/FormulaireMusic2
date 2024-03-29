@@ -35,9 +35,13 @@ switch ($route) {
     break;
   
   case HOME_URL.'traiterForm':
+    if(!isset($_POST['rgpd'])) {
+      echo "Vous devez accepter les conditions de confidentialité et de traitement des données pour continuer.";
+      break;
+    } else {
     $ReservationsController->traiterFormulaire();
     $HomeController->indexRecap();
-     break;
+     break;}
 
      case HOME_URL.'envoiMail':
      $HomeController->envoyerMail();
