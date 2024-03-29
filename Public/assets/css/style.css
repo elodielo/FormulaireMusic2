@@ -30,13 +30,17 @@
 }
 
 #coordonnees {
-
     width: 18%;
     margin-left: 40%;
-    margin-top: 15%;
+    margin-top: 7%;
     border-radius: 20px;
     border: 5px solid black;
-    height:444px;
+    height: 60%;
     line-height: 30px;
     cursor: pointer;
+}
+
+#rgpd-error{
+    color: red; 
+    display: none
 }

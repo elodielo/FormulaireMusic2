@@ -39,6 +39,9 @@ switch ($route) {
     $HomeController->indexRecap();
      break;
 
+     case HOME_URL.'envoiMail':
+     $HomeController->envoyerMail();
+       break;
 
    case HOME_URL.'formulaire':
    $HomeController->indexRecap();

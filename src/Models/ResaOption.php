@@ -4,7 +4,7 @@ namespace src\Models;
 
 // use src\Services\Hydratation;
 
-class ResaPass{
+class ResaOption{
     private $idResa;
     private $idOption;
     private $jour;

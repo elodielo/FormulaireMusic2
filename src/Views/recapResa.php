@@ -8,14 +8,15 @@ use src\Repositories\ReservationRepository;
 
 $clientRepo = new ClientRepository;
 $resaRepo = new ReservationRepository;
-// var_dump($_SESSION);
+$optionRepo = new OptionRepository;
+
 $idClient = $_SESSION['utilisateur']->getId();
 $client = $clientRepo->getClientById($idClient);
+
 $resa = $resaRepo->getClientByIdClient($idClient);
 $jour =$resaRepo->recupJourResaavecIDclient($idClient);
-$optionRepo = new OptionRepository;
+
 $option = $optionRepo->recupOptionavecIDclient($idClient);
-// var_dump($option);
 
 ?>
 
@@ -27,10 +28,11 @@ $option = $optionRepo->recupOptionavecIDclient($idClient);
      <ul>
          <li> Nombre de personnes : <?php echo $resa->nombre ?> </li>
          <li> Jours choisis : <?php echo $jour->jour ?> </li>
-         <li> Options : <?php echo $option->nomOption ?>  </li>
-         <li> Prix pour les options: <?php echo $option->prixOption ?> </li>
+         <li> Options : <?php echo $option->nomOptions ?>  </li>
+         <li> Prix pour les options: <?php echo $option->prix ?> </li>
          <li> Nombre de casques : <?php echo $resa->casques ?> </li>
          <li> Nombre de luges: <?php echo $resa->luges ?> </li>
      </ul>
      <p> Le tout pour la somme de : <?php echo $resa->prixTotal ?> euros</p>
-</div> 
+    <a href="<?php echo HOME_URL.'envoiMail'; ?>"> Envoi par mail</a>
+    </div> 
