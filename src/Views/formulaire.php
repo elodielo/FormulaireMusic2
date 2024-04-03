@@ -110,6 +110,7 @@ include __DIR__ .'/includes/header.php' ?>
         <input type="password" name="mdp" id="mdp" required>
         <label for="mdp2">Confirmation mot de passe :</label>
         <input type="password" name="mdp2" id="mdp2" required>
+        <div id="mdp-error">Les mots de passe ne correspondent pas</div>
         <label for="rgpd">J'accepte les conditions de confidentialité et de traitement des données.</label>
         <input type="checkbox" name="rgpd" id="rgpd">
         <div id="rgpd-error">Vous devez accepter les conditions de confidentialité et de traitement des données pour continuer.</div>

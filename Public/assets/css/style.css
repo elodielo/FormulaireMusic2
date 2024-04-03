@@ -49,6 +49,11 @@
     display: none
 }
 
+#mdp-error{
+    color: red; 
+    display: none
+}
+
 @media only screen and (max-width: 425px) {
     #reservation, #options, #coordonnees {
         margin-left: 23%;

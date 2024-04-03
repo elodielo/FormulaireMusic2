@@ -59,7 +59,7 @@ $test = mail($to, $subject, $message, $headers);
 if ($test) {
   $this->render("confirmationEmail");
 } else{
-  var_dump($test); // reverra la valeur de la fonction mail, probablement false. Aller voir dans ce cas le fichier error.log dans C://wamp/sendmail/
+  var_dump($test); 
 }
   }
 
@@ -75,9 +75,9 @@ if ($test) {
     $this->render("recapResa");
   }
 
-  public function page404(): void
-  {
-    header("HTTP/1.1 404 Not Found");
-    $this->render('404');
-  }
+  // public function page404(): void
+  // {
+  //   header("HTTP/1.1 404 Not Found");
+  //   $this->render('404');
+  // }
 }
