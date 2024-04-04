@@ -34,7 +34,7 @@ $resas = $resasRepo->getAllReservations();
             <th>Tarif total</th>
             <th>Jours choisis</th>
             <th>Nombre de casques</th>
-            <th>Options Choisies</th>
+            <th>Option Choisie</th>
             <th>Prix pour les options</th>
         </tr>
     </thead>

@@ -28,7 +28,7 @@ $option = $optionRepo->recupOptionavecIDclient($idClient);
     <ul>
         <li> Nombre de personnes : <?php echo $resa->nombre ?> </li>
         <li> Jours choisis : <?php echo $jour->jour ?> </li>
-        <li> Options : <?php echo $option->nomOptions ?> </li>
+        <li> Option choisie : <?php echo $option->nomOptions ?> </li>
         <li> Prix pour les options: <?php echo $option->prix ?> </li>
         <li> Nombre de casques : <?php echo $resa->casques ?> </li>
         <li> Nombre de luges: <?php echo $resa->luges ?> </li>
