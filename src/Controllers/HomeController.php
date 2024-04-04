@@ -75,9 +75,9 @@ if ($test) {
     $this->render("recapResa");
   }
 
-  // public function page404(): void
-  // {
-  //   header("HTTP/1.1 404 Not Found");
-  //   $this->render('404');
-  // }
+  public function page404(): void
+  {
+    header("HTTP/1.1 404 Not Found");
+    $this->render('404');
+  }
 }

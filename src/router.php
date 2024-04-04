@@ -67,6 +67,10 @@ switch ($route) {
     $HomeController->affichePageConnexion();
     break;
 
+    case HOME_URL . 'admin':
+    $ClientController->afficherToutesLesResas();
+    break;
+
   default:
     $HomeController->page404();
     break;

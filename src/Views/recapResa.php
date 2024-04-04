@@ -13,7 +13,7 @@ $optionRepo = new OptionRepository;
 $idClient = $_SESSION['utilisateur']->getId();
 $client = $clientRepo->getClientById($idClient);
 
-$resa = $resaRepo->getClientByIdClient($idClient);
+$resa = $resaRepo->getReservationByIdClient($idClient);
 $jour =$resaRepo->recupJourResaavecIDclient($idClient);
 
 $option = $optionRepo->recupOptionavecIDclient($idClient);

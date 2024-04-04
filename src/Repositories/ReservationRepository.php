@@ -29,7 +29,7 @@ class ReservationRepository
                 $reservationData['id'],
                 $reservationData['nombre'],
                 $reservationData['reduit'],
-                $reservationData['prix_total'],
+                $reservationData['prixTotal'],
                 $reservationData['enfants'],
                 $reservationData['luges'],
                 $reservationData['casques'],
@@ -79,7 +79,7 @@ public function supprimerReservation($id)
         $query->execute(['id' => $id]);
     }
 
-    public function getClientByIdClient($idClient)
+    public function getReservationByIdClient($idClient)
     {
         $sql = "SELECT * FROM fest_reservations WHERE id_client=:id";
         $statement = $this->db->prepare($sql);
