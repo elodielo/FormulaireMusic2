@@ -44,6 +44,25 @@ class HomeController
     }
   }
 
+  public function affichePageConnexionAdmin()
+  {
+    $this->render("ConnexionAdmin");
+  }
+
+  public function traiterConnexionAdmin(){
+    
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $password = $_POST['password'];
+  if ($password === "1234"){
+      $_SESSION['autorise'] = true;
+      header('location:'.HOME_URL.'adminAutorise');
+      exit();
+  } else {
+      header('location:'.HOME_URL.'admin');
+  }
+
+}
+  }
 
   public function envoyerMail()
   {

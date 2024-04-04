@@ -33,6 +33,10 @@ switch ($route) {
     $HomeController->traiterConnexion();
     break;
 
+    case HOME_URL . 'traitementConnexionAdmin':
+      $HomeController->traiterConnexionAdmin();
+      break;
+
   case HOME_URL . 'traiterForm':
     if (!isset($_POST['rgpd'])) {
       echo "Vous devez accepter les conditions de confidentialité et de traitement des données pour continuer.";
@@ -68,9 +72,17 @@ switch ($route) {
     break;
 
     case HOME_URL . 'admin':
-    $ClientController->afficherToutesLesResas();
-    break;
-
+      $HomeController->affichePageConnexionAdmin();
+      break;
+    
+      case HOME_URL . 'adminAutorise':
+        if($_SESSION['autorise'] == true) {
+          $ClientController-> afficherToutesLesResas();
+          break;
+        } else {
+          $ClientController->afficherLaPageDeConnexion();};
+        break; 
+    
   default:
     $HomeController->page404();
     break;

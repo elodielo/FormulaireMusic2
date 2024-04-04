@@ -19,5 +19,9 @@ La connexion peut se tester avec :
 email : Jean-Louis.Michel@gmail.com
 mot de passe : michel
 
+## Page administrateur 
+
+La page administrateur est disponible en renseignant directement dans l'URL "admin" après le Home Url. 
+Un mot de passe est demandé, il faut renseigner 1234 pour avoir accès à la liste de toutes les réservations.
 
 

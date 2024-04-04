@@ -15,8 +15,11 @@ class ClientController
   use Reponse;
 
 
- public function afficherToutesLesResas(){
-  $this->render("administrateur");
+ public function afficherLaPageDeConnexion(){
+  $this->render("ConnexionAdmin");}
 
- } 
+  public function afficherToutesLesResas(){
+    $this->render("administrateur");
+  }
+
 }
