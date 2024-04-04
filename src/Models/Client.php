@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace src\Models;
 
-// use src\Services\Hydratation;
 
-class Client{
+class Client
+{
     private $id;
     private $nom;
     private $prenom;

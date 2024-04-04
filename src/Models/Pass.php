@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace src\Models;
 
-// use src\Services\Hydratation;
 
-class Pass{
+class Pass
+{
     private $id;
     private $typePass;
     private $prixPass;

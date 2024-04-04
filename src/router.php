@@ -33,9 +33,9 @@ switch ($route) {
     $HomeController->traiterConnexion();
     break;
 
-    case HOME_URL . 'traitementConnexionAdmin':
-      $HomeController->traiterConnexionAdmin();
-      break;
+  case HOME_URL . 'traitementConnexionAdmin':
+    $HomeController->traiterConnexionAdmin();
+    break;
 
   case HOME_URL . 'traiterForm':
     if (!isset($_POST['rgpd'])) {
@@ -71,18 +71,19 @@ switch ($route) {
     $HomeController->affichePageConnexion();
     break;
 
-    case HOME_URL . 'admin':
-      $HomeController->affichePageConnexionAdmin();
+  case HOME_URL . 'admin':
+    $HomeController->affichePageConnexionAdmin();
+    break;
+
+  case HOME_URL . 'adminAutorise':
+    if ($_SESSION['autorise'] == true) {
+      $ClientController->afficherToutesLesResas();
       break;
-    
-      case HOME_URL . 'adminAutorise':
-        if($_SESSION['autorise'] == true) {
-          $ClientController-> afficherToutesLesResas();
-          break;
-        } else {
-          $ClientController->afficherLaPageDeConnexion();};
-        break; 
-    
+    } else {
+      $ClientController->afficherLaPageDeConnexion();
+    };
+    break;
+
   default:
     $HomeController->page404();
     break;

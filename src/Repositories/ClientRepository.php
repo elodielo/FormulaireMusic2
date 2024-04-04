@@ -18,7 +18,7 @@ class ClientRepository
     require_once __DIR__ . '/../../config.php';
   }
 
-  
+
   public function getAllClients()
   {
     $sql = "SELECT * FROM fest_Client";
@@ -39,7 +39,7 @@ class ClientRepository
       ':telephone'            => $client->getTelephone(),
       ':adresse'             => $client->getAdresse(),
       ':rgpdDate'           => $client->getRgpdDate(),
-      ':mdp'      =>$client->getMdp(),
+      ':mdp'      => $client->getMdp(),
 
     ]);
 
@@ -51,30 +51,29 @@ class ClientRepository
 
   public function getClientById($id)
   {
-      $sql = "SELECT * FROM fest_client WHERE ID=:id";
-      $statement = $this->DB->prepare($sql);
-      $statement->execute([':id' => $id]);
-      $retour = $statement->fetch(PDO::FETCH_OBJ);
-      return $retour;
+    $sql = "SELECT * FROM fest_client WHERE ID=:id";
+    $statement = $this->DB->prepare($sql);
+    $statement->execute([':id' => $id]);
+    $retour = $statement->fetch(PDO::FETCH_OBJ);
+    return $retour;
   }
 
   public function getClientByMailEtMdp($email, $mdp)
-  {   
-      $sql = "SELECT * FROM fest_client WHERE email=:email";
-      $statement = $this->DB->prepare($sql);
-      $statement->execute([':email' => $email]);
+  {
+    $sql = "SELECT * FROM fest_client WHERE email=:email";
+    $statement = $this->DB->prepare($sql);
+    $statement->execute([':email' => $email]);
 
-      $client = $statement->fetch(PDO::FETCH_ASSOC);
-      $newClient = new Client($client['id'], $client['nom'], $client['prenom'], $client['email'], $client['telephone'], $client['adresse'], $client['rgpdDate'], $client['mdp']);
-      if($client){
-      if(password_verify($mdp, $client['mdp'])){
-          return $newClient;
+    $client = $statement->fetch(PDO::FETCH_ASSOC);
+    $newClient = new Client($client['id'], $client['nom'], $client['prenom'], $client['email'], $client['telephone'], $client['adresse'], $client['rgpdDate'], $client['mdp']);
+    if ($client) {
+      if (password_verify($mdp, $client['mdp'])) {
+        return $newClient;
       } else {
-          echo "mot de passe erronne";
-      }} else {
-          echo "utilisateur inconnu";
+        echo "mot de passe erronne";
       }
-      
+    } else {
+      echo "utilisateur inconnu";
+    }
   }
-
 }

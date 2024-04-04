@@ -15,7 +15,7 @@ class ReservationRepository
         $database = new Database;
         $this->db = $database->getDB();
 
-    require_once __DIR__ . '/../../config.php';
+        require_once __DIR__ . '/../../config.php';
     }
 
     public function getAllReservations()
@@ -73,7 +73,7 @@ class ReservationRepository
             $reservationData['id_client']
         );
     }
-public function supprimerReservation($id)
+    public function supprimerReservation($id)
     {
         $query = $this->db->prepare("DELETE FROM fest_reservations WHERE id = :id");
         $query->execute(['id' => $id]);
@@ -102,10 +102,10 @@ public function supprimerReservation($id)
             ':casques' => $reservation->getCasques(),
             ':id_client' => $reservation->getIdClient()
         ]);
-      $id = $this->db->lastInsertId();
-      $reservation->setId($id);
-  
-      return $reservation;
+        $id = $this->db->lastInsertId();
+        $reservation->setId($id);
+
+        return $reservation;
     }
 
     public function updateReservation(Reservation $reservation)
@@ -125,6 +125,4 @@ public function supprimerReservation($id)
             'id_client' => $reservation->getIdClient()
         ]);
     }
-
-
 }

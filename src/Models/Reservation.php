@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace src\Models;
 
-class Reservation{
+class Reservation
+{
     private $id;
     private $nombre;
     private $reduit;
@@ -11,8 +12,9 @@ class Reservation{
     private $luges;
     private $casques;
     private $id_client;
-    
-    function __construct($id, $nombre, $reduit, $prixTotal, $enfants, $luges, $casques, $id_client){
+
+    function __construct($id, $nombre, $reduit, $prixTotal, $enfants, $luges, $casques, $id_client)
+    {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->reduit = $reduit;
@@ -22,7 +24,7 @@ class Reservation{
         $this->casques = $casques;
         $this->id_client = $id_client;
     }
-    
+
 
     /**
      * Get the value of id
@@ -167,6 +169,4 @@ class Reservation{
 
         return $this;
     }
-
-
 }

@@ -1,7 +1,9 @@
 <?php
+
 namespace src\Services;
 
-trait Reponse {
+trait Reponse
+{
 
   /**
    * La méthode render permet d'afficher une vue. Elle peut prendre en second paramètre des données à afficher dans la vue.
@@ -11,7 +13,8 @@ trait Reponse {
    * Deux clefs sont attendues, section et action, qui seront par défaut vides si vous ne les fournissez pas. La section permet de savoir quelle partie le tableau de bord doit afficher, l'action permet de savoir quelle est l'action du CRUD en cours de demande.
    * @return void
    */
-  public function render(string $view, array $data = ['section' => '', 'action' => '']){
+  public function render(string $view, array $data = ['section' => '', 'action' => ''])
+  {
     if (!empty($data)) {
       foreach ($data as $key => $value) {
         ${$key} = $value;
@@ -23,6 +26,6 @@ trait Reponse {
     if (!isset($action)) {
       $action = '';
     }
-    include_once __DIR__ . '/../Views/'. $view . ".php";
+    include_once __DIR__ . '/../Views/' . $view . ".php";
   }
 }

@@ -9,17 +9,18 @@ use src\Services\Reponse;
 class ClientController
 {
   private $ClientRepo;
-  // private $CategoryRepo;
-  // private $ClassificationRepo;
+
 
   use Reponse;
 
 
- public function afficherLaPageDeConnexion(){
-  $this->render("ConnexionAdmin");}
-
-  public function afficherToutesLesResas(){
-    $this->render("administrateur");
+  public function afficherLaPageDeConnexion()
+  {
+    $this->render("ConnexionAdmin");
   }
 
+  public function afficherToutesLesResas()
+  {
+    $this->render("administrateur");
+  }
 }

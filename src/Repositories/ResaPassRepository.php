@@ -16,7 +16,7 @@ class ResaPassRepository
         $database = new Database;
         $this->db = $database->getDB();
 
-    require_once __DIR__ . '/../../config.php';
+        require_once __DIR__ . '/../../config.php';
     }
 
 
@@ -30,6 +30,4 @@ class ResaPassRepository
             'jour' => $reservation->getJour(),
         ]);
     }
-
-
 }

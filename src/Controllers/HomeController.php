@@ -3,6 +3,7 @@
 namespace src\Controllers;
 
 use src\Repositories\ClientRepository;
+use src\Repositories\ReservationRepository;
 use src\Services\Reponse;
 
 class HomeController
@@ -35,10 +36,10 @@ class HomeController
           $_SESSION['utilisateur'] = $client;
           $_SESSION['connecte'] = true;
           var_dump("Ok client connecté");
-          header('location:'.HOME_URL.'recapResa');
+          header('location:' . HOME_URL . 'recapResa');
           die();
-        }else{
-          // RENVOI SUR PAGE INSCRIPTION OUU PAGE : PAS ENCORE DE RESA
+        } else {
+          header('location:' . HOME_URL);
         }
       }
     }
@@ -49,43 +50,53 @@ class HomeController
     $this->render("ConnexionAdmin");
   }
 
-  public function traiterConnexionAdmin(){
-    
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-  $password = $_POST['password'];
-  if ($password === "1234"){
-      $_SESSION['autorise'] = true;
-      header('location:'.HOME_URL.'adminAutorise');
-      exit();
-  } else {
-      header('location:'.HOME_URL.'admin');
-  }
+  public function traiterConnexionAdmin()
+  {
 
-}
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $password = $_POST['password'];
+      if ($password === "1234") {
+        $_SESSION['autorise'] = true;
+        header('location:' . HOME_URL . 'adminAutorise');
+        exit();
+      } else {
+        header('location:' . HOME_URL . 'admin');
+      }
+    }
   }
 
   public function envoyerMail()
   {
-$to      = 'elodielo20@gmail.com';
-$subject = 'le sujet';
-$message = 'Bravo vous êtes bien inscrit au Vercors Music festival !';
-$headers = 'From: elodielo20@gmail.com' . "\r\n" .
-'Reply-To: elodielo20@gmail.com' . "\r\n" .
-'X-Mailer: PHP/' . phpversion();
+    $clientRepo = new ClientRepository;
+    $resaRepo = new ReservationRepository;
 
-$test = mail($to, $subject, $message, $headers);
+    $idClient = $_SESSION['utilisateur']->getId();
+    $client = $clientRepo->getClientById($idClient);
+    $resa = $resaRepo->getReservationByIdClient($idClient);
 
-if ($test) {
-  $this->render("confirmationEmail");
-} else{
-  var_dump($test); 
-}
+    $mail = $client->email;
+    $to      = $mail;
+    $subject = 'le sujet';
+    $message = 'Bravo vous êtes bien inscrit au Vercors Music festival !
+Nombre de personnes attendues : ' . $resa->nombre . ' sous le nom :' . $client->prenom . ' ' . $client->nom .
+      '. A régler sur place : ' . $resa->prixTotal . ' euros.';
+    $headers = 'From: elodielo20@gmail.com' . "\r\n" .
+      'Reply-To: elodielo20@gmail.com' . "\r\n" .
+      'X-Mailer: PHP/' . phpversion();
+
+    $test = mail($to, $subject, $message, $headers);
+
+    if ($test) {
+      $this->render("confirmationEmail");
+    } else {
+      var_dump($test);
+    }
   }
 
   public function quit()
   {
     session_destroy();
-    header('location:'. HOME_URL);
+    header('location:' . HOME_URL);
     die();
   }
 

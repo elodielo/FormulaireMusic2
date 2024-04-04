@@ -18,7 +18,7 @@ class PassRepository
     require_once __DIR__ . '/../../config.php';
   }
 
-  
+
   public function getAllPass()
   {
     $sql = "SELECT * FROM fest_pass";
@@ -44,11 +44,10 @@ class PassRepository
 
   public function getPassById($id)
   {
-      $sql = "SELECT * FROM fest_pass WHERE ID=:id";
-      $statement = $this->DB->prepare($sql);
-      $statement->execute([':id' => $id]);
-      $retour = $statement->fetch(PDO::FETCH_OBJ);
-      return $retour;
+    $sql = "SELECT * FROM fest_pass WHERE ID=:id";
+    $statement = $this->DB->prepare($sql);
+    $statement->execute([':id' => $id]);
+    $retour = $statement->fetch(PDO::FETCH_OBJ);
+    return $retour;
   }
-
 }

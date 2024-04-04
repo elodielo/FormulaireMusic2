@@ -1,17 +1,18 @@
-<?php 
+<?php
 
 namespace src\Models;
 
 // use src\Services\Hydratation;
 
-class Option{
+class Option
+{
     private $id;
     private $nomOption;
     private $prixOption;
     private $nombreOption;
 
 
-    public function __construct($id, $nomOption, $prixOption, $nombreOption )
+    public function __construct($id, $nomOption, $prixOption, $nombreOption)
     {
         $this->id = $id;
         $this->nomOption = $nomOption;

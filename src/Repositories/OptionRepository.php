@@ -18,7 +18,7 @@ class OptionRepository
     require_once __DIR__ . '/../../config.php';
   }
 
-  
+
   public function getAllOptions()
   {
     $sql = "SELECT * FROM fest_options";
@@ -46,14 +46,13 @@ class OptionRepository
 
   public function recupOptionavecIDclient($idClient)
   {
-      $sql = "SELECT * FROM fest_options 
+    $sql = "SELECT * FROM fest_options 
       JOIN fest_reservations_options ON fest_options.id = fest_reservations_options.id_opt
       JOIN fest_reservations ON fest_reservations.id = fest_reservations_options.id_res
       WHERE fest_reservations.id_client = :id;";
-      $statement = $this->DB->prepare($sql);
-      $statement->execute([':id' => $idClient]);
-      $retour = $statement->fetch(PDO::FETCH_OBJ);
-      return $retour;
+    $statement = $this->DB->prepare($sql);
+    $statement->execute([':id' => $idClient]);
+    $retour = $statement->fetch(PDO::FETCH_OBJ);
+    return $retour;
   }
-
 }

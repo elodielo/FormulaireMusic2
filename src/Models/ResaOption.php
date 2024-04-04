@@ -1,16 +1,17 @@
-<?php 
+<?php
 
 namespace src\Models;
 
 // use src\Services\Hydratation;
 
-class ResaOption{
+class ResaOption
+{
     private $idResa;
     private $idOption;
     private $jour;
 
 
-    public function __construct($idResa, $idOption, $jour )
+    public function __construct($idResa, $idOption, $jour)
     {
         $this->idResa = $idResa;
         $this->idOption = $idOption;

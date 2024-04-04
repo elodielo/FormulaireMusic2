@@ -1,16 +1,16 @@
-<?php 
+<?php
 
 namespace src\Models;
 
-// use src\Services\Hydratation;
 
-class ResaPass{
+class ResaPass
+{
     private $idResa;
     private $idPass;
     private $jour;
 
 
-    public function __construct($idResa, $idPass, $jour )
+    public function __construct($idResa, $idPass, $jour)
     {
         $this->idResa = $idResa;
         $this->idPass = $idPass;
