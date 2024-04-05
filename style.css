@@ -1,0 +1,76 @@
+#reservation {
+  width: 29%;
+  margin-left: 35%;
+  margin-top: 3%;
+  border-radius: 20px;
+  border: 5px solid black;
+  cursor: pointer;
+}
+
+tr,
+td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+#confirmation {
+  border: solid 3px darkorange;
+}
+
+.bouton {
+  display: flex;
+  justify-content: center;
+  width: 51%;
+  border-radius: 10px;
+  margin-top: 3px;
+  border: 2px solid #dc8d32;
+  margin: 5%;
+  padding: 2%;
+}
+
+#options {
+  width: 27%;
+  margin-left: 35%;
+  margin-top: 3%;
+  border-radius: 20px;
+  border: 5px solid black;
+  cursor: pointer;
+}
+
+#coordonnees {
+  width: 18%;
+  margin-left: 40%;
+  margin-top: 7%;
+  border-radius: 20px;
+  border: 5px solid black;
+  height: 60%;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+#rgpd-error {
+  color: red;
+  display: none;
+}
+
+#mdp-error {
+  color: red;
+  display: none;
+}
+
+@media only screen and (max-width: 425px) {
+  #reservation,
+  #options,
+  #coordonnees {
+    margin-left: 23%;
+  }
+}
+
+@media only screen and (max-width: 614px) {
+  #formulaireCo {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 25%;
+  }
+}

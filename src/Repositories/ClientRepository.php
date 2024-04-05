@@ -21,7 +21,7 @@ class ClientRepository
 
   public function getAllClients()
   {
-    $sql = "SELECT * FROM fest_Client";
+    $sql = "SELECT * FROM fest_client";
 
     return  $this->DB->query($sql)->fetchAll(PDO::FETCH_OBJ);
   }

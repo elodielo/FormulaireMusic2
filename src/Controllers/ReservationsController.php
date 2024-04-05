@@ -41,7 +41,13 @@ class ReservationsController
                 $telephone = $_POST['telephone'];
                 $adresse = $_POST['adressePostale'];
                 $nbrCasques = (int)$_POST['nombreCasquesEnfants'];
+                if($_POST['nombreCasquesEnfants'] == ""){
+                    $nbrCasques = 0;
+                }
                 $nbrLuges = $_POST['NombreLugesEte'];
+                if($_POST['NombreLugesEte'] == ""){
+                    $nbrLuges = 0;
+                }
                 $joursChoisis = "";
                 $nbrEnfants = "non";
                 $nombreOption = 0;
