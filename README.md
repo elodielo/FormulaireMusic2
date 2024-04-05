@@ -27,3 +27,5 @@ La page administrateur est disponible en renseignant directement dans l'URL "adm
 Un mot de passe est demandé, il faut renseigner 1234 pour avoir accès à la liste de toutes les réservations.
 
 
+## Site en ligne accessible à cette adresse:
+https://simplondevgrenoble.nohost.me/elodiel/FormulaireMusic2/public/formulaire 
